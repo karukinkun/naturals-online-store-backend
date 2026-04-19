@@ -3,7 +3,6 @@ from app.schemas.products import Product, ProductsResponse
 
 router = APIRouter(prefix="/products", tags=["products"])
 
-
 mock_products = [
     {
         "id": 1,

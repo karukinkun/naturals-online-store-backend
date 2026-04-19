@@ -12,3 +12,4 @@ def get_products(db: Session, word: str, skip: int = 0, limit: int = 6):
     products = query.offset(skip).limit(limit).all()
 
     return products, total
+    
