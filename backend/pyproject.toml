@@ -1,0 +1,74 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.128.8,<1.0",
+    "pymysql>=1.1.2",
+    "sqlalchemy>=2.0.49",
+    "uvicorn[standard]>=0.39.0,<1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.11",
+]
+
+[tool.ruff]
+# 一般的に無視されるディレクトリを除外
+exclude = [
+    "build",              # ビルドディレクトリ
+    "dist",               # 配布物ディレクトリ
+    "site-packages",      # Pythonの依存パッケージ
+    "venv",               # 仮想環境ディレクトリの別名
+    ".venv",              # Python仮想環境ディレクトリ
+]
+# Blackと同じ設定で、1行の長さを88文字に設定
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "F",  # pyflakes
+    "E",  # pycodestyle
+    "W",  # pycodestyle warnings
+    "I",  # isort
+    "D",  # pydocstyle
+    "UP", # pyupgrade
+    "N",  # pep8-naming
+]
+ignore = [
+    "D105", # undocumented-magic-method
+    "D107", # undocumented-public-init
+    "D205", # blank-line-after-summary
+    "E402", # sys path before import
+    "D415", # ends-in-punctuation
+]
+# `--fix`が指定された場合、すべてのルールに対して自動修正を許可
+fixable = ["ALL"]
+# 自動修正ができないルールは設定しない
+unfixable = []
+
+[tool.ruff.format]
+# Blackと同様に、文字列はダブルクォートで囲む
+quote-style = "double"
+
+# Blackと同様に、インデントはスペースを使用
+indent-style = "space"
+
+# Blackと同様に、トレーリングカンマ（最後のカンマ）は尊重する
+skip-magic-trailing-comma = false
+
+# Blackと同様に、適切な改行を自動的に検出
+line-ending = "auto"
+
+# ドキュメントストリング内のコードスニペットに適用される行長制限
+# `docstring-code-format`が有効な場合にのみ適用されます
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "D"] # __init__.pyは未使用インポートとドキュメントを無視

@@ -1,25 +1,8 @@
-# -----------------
-#  Pythonフレームワーク
-# -----------------
-fastapi
-
-# -----------------
-#  パフォーマンス最適化
-# -----------------
-"uvicorn[standard]"
-orjson
-
-# -----------------
-#  バックグラウンド処理
-# -----------------
-# 用途:
-# 注文確定後のメール
-# 在庫更新
-# 決済後処理
-celery
-dramatiq
-
-# -----------------
-# データバリデーション
-# -----------------
-pydantic-settings
+[project]
+name = "natulalis-backend"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "sqlalchemy",
+  "pymysql"
+]
