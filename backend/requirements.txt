@@ -1,8 +1,0 @@
-[project]
-name = "natulalis-backend"
-dependencies = [
-  "fastapi",
-  "uvicorn[standard]",
-  "sqlalchemy",
-  "pymysql"
-]

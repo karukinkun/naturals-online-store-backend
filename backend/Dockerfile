@@ -2,14 +2,20 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# 依存コピー
-COPY requirements.txt .
+# uvインストール
+RUN pip install --no-cache-dir uv
 
-# インストール
-RUN pip install --no-cache-dir -r requirements.txt
+# 依存だけ先にコピー（キャッシュ効かせる）
+COPY pyproject.toml uv.lock ./
 
-# ソースコピー
-COPY . 
+# 本番用依存インストール
+RUN uv sync --no-dev
+
+# アプリコピー
+COPY . .
+
+# ポート公開
+EXPOSE 8000
 
 # 起動
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
