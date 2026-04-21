@@ -1,15 +1,24 @@
 from pydantic import BaseModel
 
 
+class Image(BaseModel):
+    id: int
+    image_url: str
+
+
 class Product(BaseModel):
     id: int
-    title: str
-    description: str
+    name: str
+    description: str | None = None
     price: int
-    rating: float
-    brand: str
-    category: str
-    thumbnail: str
+    discount_price: int | None = None
+    stock: int | None = None
+    brand_id: int
+    brand: str | None = None
+    category_id: int
+    category: str | None = None
+    rating: float | None = None
+    images: list[Image]
 
     class Config:
         from_attributes = True
@@ -18,5 +27,5 @@ class Product(BaseModel):
 class ProductsResponse(BaseModel):
     products: list[Product]
     total: int
-    skip: int
+    page: int
     limit: int

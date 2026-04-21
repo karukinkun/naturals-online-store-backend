@@ -5,6 +5,8 @@ WORKDIR /app
 # uvインストール
 RUN pip install --no-cache-dir uv
 
+ENV UV_PYTHON=3.11
+
 # 依存だけ先にコピー（キャッシュ効かせる）
 COPY pyproject.toml uv.lock ./
 
